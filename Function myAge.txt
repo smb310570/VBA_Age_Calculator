@@ -1,0 +1,58 @@
+Function myAge(dt1 As Date, dt2 As Date) As String
+
+    Dim d1 As Integer
+    Dim m1 As Integer
+    Dim y1 As Integer
+    
+    Dim d2 As Integer
+    Dim m2 As Integer
+    Dim y2 As Integer
+    
+    Dim d As Integer
+    Dim m As Integer
+    Dim y As Integer
+    
+    d1 = Day(dt1)
+    m1 = Month(dt1)
+    y1 = Year(dt1)
+    
+    d2 = Day(dt2)
+    m2 = Month(dt2)
+    y2 = Year(dt2)
+    
+    If d2 < d1 Then
+    
+        If m2 = 1 Then
+            m2 = 12
+            y2 = y2 - 1
+        Else
+            m2 = m2 - 1
+        End If
+    
+        Select Case m2
+        
+            Case 4, 6, 9, 11
+                d2 = d2 + 30
+            Case 1, 3, 5, 7, 8, 10, 12
+                d2 = d2 + 31
+            Case 2
+                If y2 Mod 4 = 0 Then d2 = d2 + 29 Else d2 = d2 + 28
+        End Select
+    
+    End If
+        
+    d = d2 - d1
+    
+    If m2 < m1 Then
+    
+        m2 = m2 + 12
+        y2 = y2 - 1
+    
+    End If
+
+    m = m2 - m1
+    y = y2 - y1
+
+    myAge = Str(y) & " Year(s) ; " & Str(m) & " Month(s) ; " & Str(d) & " Day(s)"
+
+End Function
